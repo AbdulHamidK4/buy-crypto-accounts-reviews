@@ -146,6 +146,45 @@ body {
   display: block;
 }
 
+// Styling tags within articles
+article {
+  h1 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    line-height: 1.2;
+    color: #111;
+  }
+
+  h2 {
+    font-size: 1.8rem;
+    margin-top: 30px;
+    margin-bottom: 15px;
+    color: #222;
+    border-left: 5px solid $accent-color;
+    padding-left: 15px;
+  }
+
+  p {
+    margin-bottom: 15px;
+    font-size: 1rem;
+    color: #444;
+  }
+
+  ul {
+    margin-left: 25px;
+    margin-bottom: 20px;
+    list-style-type: disc;
+
+    li {
+      margin-bottom: 8px;
+    }
+  }
+
+  strong {
+    color: #000;
+  }
+}
+
 article img {
   width: 100%;
   max-width: 800px;
