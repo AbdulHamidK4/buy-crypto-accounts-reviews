@@ -142,20 +142,27 @@ body {
 .main-container {
   max-width: $container-width;
   margin: 0 auto;
-  padding: 15px 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  padding: 30px 20px 40px;
+  display: block;
+}
+
+article img {
+  width: 100%;
+  max-width: 800px;
+  height: auto;
+  display: block;
+  margin: 30px auto;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
 // --- 7. Main Section (Spacing Fix) ---
 // This will bring the cards down from below the header.
 main {
   display: block;
-  padding-top: 40px;
-  padding-bottom: 40px;
+  width: 100%;
+  overflow: hidden;
 }
-
 // --- 8. Card Style ---
 .card {
   background: $white;
