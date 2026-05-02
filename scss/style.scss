@@ -1,4 +1,4 @@
-// --- ১. ভেরিয়েবলসমূহ ---
+// --- 1. Variables ---
 $primaryfont: Arial, sans-serif;
 $bodybg: #f5f5f5;
 $white: #fff;
@@ -9,7 +9,7 @@ $accent-color: #00c896;
 $muted-text: #aaa;
 $container-width: 1200px;
 
-// --- ২. ব্রেকপয়েন্ট ও কন্টেইনার ম্যাপ ---
+// --- 2. Breakpoints and Container Maps ---
 $breakpoints: (
   xs: 480px,
   sm: 576px,
@@ -27,7 +27,7 @@ $container-widths: (
   xxl: 1320px,
 );
 
-// --- ৩. মিক্সিন ---
+// --- 3. Mixin ---
 @mixin respond($breakpoint) {
   @if map-has-key($breakpoints, $breakpoint) {
     @media (min-width: map-get($breakpoints, $breakpoint)) {
@@ -36,7 +36,7 @@ $container-widths: (
   }
 }
 
-// --- ৪. গ্লোবাল রিসেট ---
+// --- 4. Global reset ---
 * {
   box-sizing: border-box;
   margin: 0;
@@ -54,7 +54,7 @@ body {
   line-height: 1.6;
 }
 
-// --- ৫. কন্টেইনার ও গ্রিড লেআউট ---
+// --- 5. Container and grid layout ---
 .container {
   width: 100%;
   padding-inline: $twenty;
@@ -69,7 +69,7 @@ body {
     }
   }
 
-  // কার্ডের কলাম রেসপন্সিভনেস
+  // Card column responsiveness
   @media screen and (min-width: 768px) {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -81,7 +81,7 @@ body {
   }
 }
 
-// --- ৬. হেডার স্টাইল (Position Fix) ---
+// --- 6. Header Style (Position Fix) ---
 .site-header {
   background: $primary-bg;
   color: $text-color;
@@ -139,15 +139,15 @@ body {
   }
 }
 
-// --- ৭. মেইন সেকশন (Spacing Fix) ---
-// এটি কার্ডগুলোকে হেডারের নিচ থেকে নামিয়ে আনবে
+// --- 7. Main Section (Spacing Fix) ---
+// This will bring the cards down from below the header.
 main {
   display: block;
   padding-top: 40px;
   padding-bottom: 40px;
 }
 
-// --- ৮. কার্ড স্টাইল ---
+// --- 8. Card Style ---
 .card {
   background: $white;
   border-radius: 10px;
@@ -199,7 +199,7 @@ main {
   }
 }
 
-// --- ৯. ফুটার স্টাইল ---
+// --- 9. Footer Style ---
 .site-footer {
   background: $primary-bg;
   color: $text-color;
@@ -234,7 +234,7 @@ main {
   }
 }
 
-// --- ১০. রেসপন্সিভ মোবাইল ফিক্স ---
+// --- 10. Responsive Mobile Fix ---
 @media (max-width: 768px) {
   .site-header .header-container {
     flex-direction: column;
