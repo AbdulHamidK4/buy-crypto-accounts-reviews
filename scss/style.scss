@@ -252,3 +252,21 @@ main {
     gap: 20px;
   }
 }
+
+// CTA Button Style
+.cta-btn {
+  display: block;
+  margin: 20px auto;
+  width: fit-content;
+  padding: 12px 24px;
+  background-color: #ff6a00;
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: bold;
+  transition: background 0.3s ease;
+
+  &:hover {
+    background-color: #e26206;
+  }
+}
