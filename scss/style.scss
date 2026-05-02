@@ -5,10 +5,17 @@ $white: #fff;
 $twenty: 1.25rem;
 
 $boxsizing: border-box;
-
+// Variables
 $primary-bg: #111;
 $text-color: #fff;
 $accent-color: #00c896;
+$container-width: 1200px;
+
+// Variables (reuse if already defined)
+$primary-bg: #111;
+$text-color: #fff;
+$accent-color: #00c896;
+$muted-text: #aaa;
 $container-width: 1200px;
 
 $breakpoints: (
@@ -213,4 +220,82 @@ body {
   color: white;
   text-decoration: none;
   border-radius: 5px;
+}
+
+// Footer Styles
+.site-footer {
+  background: $primary-bg;
+  color: $text-color;
+  padding: 25px 0;
+  margin-top: 40px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+
+  .footer-container {
+    max-width: $container-width;
+    margin: 0 auto;
+    padding: 0 20px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  p {
+    font-size: 14px;
+    color: $muted-text;
+  }
+
+  .footer-links {
+    display: flex;
+    align-items: center;
+
+    a {
+      color: $text-color;
+      text-decoration: none;
+      margin-left: 20px;
+      font-size: 14px;
+      position: relative;
+      transition: all 0.3s ease;
+
+      &::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -4px;
+        width: 0%;
+        height: 2px;
+        background: $accent-color;
+        transition: width 0.3s ease;
+      }
+
+      &:hover {
+        color: $accent-color;
+
+        &::after {
+          width: 100%;
+        }
+      }
+    }
+  }
+}
+// Responsive (Mobile)
+@media (max-width: 768px) {
+  .site-footer {
+    text-align: center;
+
+    .footer-container {
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .footer-links {
+      flex-wrap: wrap;
+      justify-content: center;
+
+      a {
+        margin: 5px 10px;
+      }
+    }
+  }
 }
