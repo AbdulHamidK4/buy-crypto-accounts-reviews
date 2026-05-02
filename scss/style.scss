@@ -6,6 +6,11 @@ $twenty: 1.25rem;
 
 $boxsizing: border-box;
 
+$primary-bg: #111;
+$text-color: #fff;
+$accent-color: #00c896;
+$container-width: 1200px;
+
 $breakpoints: (
   xs: 480px,
   sm: 576px,
@@ -87,6 +92,86 @@ body {
   }
 }
 
+.site-header {
+  background: $primary-bg;
+  color: $text-color;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+
+  .header-container {
+    max-width: $container-width;
+    margin: 0 auto;
+    padding: 15px 20px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .logo {
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    cursor: pointer;
+
+    &:hover {
+      color: $accent-color;
+    }
+  }
+
+  .nav {
+    display: flex;
+    align-items: center;
+
+    a {
+      color: $text-color;
+      text-decoration: none;
+      margin-left: 20px;
+      font-size: 15px;
+      position: relative;
+      transition: color 0.3s ease;
+
+      &::after {
+        content: "";
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 0%;
+        height: 2px;
+        background: $accent-color;
+        transition: width 0.3s ease;
+      }
+
+      &:hover {
+        color: $accent-color;
+
+        &::after {
+          width: 100%;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .site-header {
+    .header-container {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .nav {
+      margin-top: 10px;
+      flex-wrap: wrap;
+
+      a {
+        margin: 10px 10px 0 0;
+      }
+    }
+  }
+}
 .card {
   background: $white;
   border-radius: 10px;
