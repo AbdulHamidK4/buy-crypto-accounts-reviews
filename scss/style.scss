@@ -1,23 +1,15 @@
+// --- ১. ভেরিয়েবলসমূহ ---
 $primaryfont: Arial, sans-serif;
-
 $bodybg: #f5f5f5;
 $white: #fff;
 $twenty: 1.25rem;
-
-$boxsizing: border-box;
-// Variables
-$primary-bg: #111;
-$text-color: #fff;
-$accent-color: #00c896;
-$container-width: 1200px;
-
-// Variables (reuse if already defined)
 $primary-bg: #111;
 $text-color: #fff;
 $accent-color: #00c896;
 $muted-text: #aaa;
 $container-width: 1200px;
 
+// --- ২. ব্রেকপয়েন্ট ও কন্টেইনার ম্যাপ ---
 $breakpoints: (
   xs: 480px,
   sm: 576px,
@@ -35,70 +27,61 @@ $container-widths: (
   xxl: 1320px,
 );
 
+// --- ৩. মিক্সিন ---
 @mixin respond($breakpoint) {
   @if map-has-key($breakpoints, $breakpoint) {
     @media (min-width: map-get($breakpoints, $breakpoint)) {
       @content;
     }
-  } @else {
-    @warn "Invalid breakpoint: #{$breakpoint}";
   }
 }
 
-.container {
-  width: 100%;
-  padding-inline: $twenty;
-  margin-inline: auto;
-
-  @each $breakpoint, $max-width in $container-widths {
-    @include respond($breakpoint) {
-      max-width: $max-width;
-    }
-  }
-}
-
-@mixin grid {
-  display: grid;
-}
-
+// --- ৪. গ্লোবাল রিসেট ---
 * {
-  box-sizing: $boxsizing;
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
 
   &::before,
   &::after {
     box-sizing: inherit;
-    margin: inherit;
-    padding: inherit;
   }
 }
 
 body {
   font-family: $primaryfont;
   background: $bodybg;
-  margin: 0;
-  padding: $twenty;
+  line-height: 1.6;
 }
 
+// --- ৫. কন্টেইনার ও গ্রিড লেআউট ---
 .container {
-  @include grid;
+  width: 100%;
+  padding-inline: $twenty;
+  margin-inline: auto;
+  display: grid;
   grid-template-columns: 1fr;
   gap: $twenty;
 
+  @each $breakpoint, $max-width in $container-widths {
+    @include respond($breakpoint) {
+      max-width: $max-width;
+    }
+  }
+
+  // কার্ডের কলাম রেসপন্সিভনেস
   @media screen and (min-width: 768px) {
-    grid-template-columns: repeat(2, minmax(250px, 1fr));
+    grid-template-columns: repeat(2, 1fr);
   }
-
   @media screen and (min-width: 992px) {
-    grid-template-columns: repeat(3, minmax(250px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
   }
-
   @media screen and (min-width: 1200px) {
-    grid-template-columns: repeat(4, minmax(250px, 1fr));
+    grid-template-columns: repeat(4, 1fr);
   }
 }
 
+// --- ৬. হেডার স্টাইল (Position Fix) ---
 .site-header {
   background: $primary-bg;
   color: $text-color;
@@ -111,7 +94,6 @@ body {
     max-width: $container-width;
     margin: 0 auto;
     padding: 15px 20px;
-
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -121,8 +103,7 @@ body {
     font-size: 24px;
     font-weight: 700;
     letter-spacing: 1px;
-    cursor: pointer;
-
+    transition: color 0.3s;
     &:hover {
       color: $accent-color;
     }
@@ -130,15 +111,13 @@ body {
 
   .nav {
     display: flex;
-    align-items: center;
-
     a {
       color: $text-color;
       text-decoration: none;
       margin-left: 20px;
       font-size: 15px;
       position: relative;
-      transition: color 0.3s ease;
+      transition: color 0.3s;
 
       &::after {
         content: "";
@@ -148,12 +127,10 @@ body {
         width: 0%;
         height: 2px;
         background: $accent-color;
-        transition: width 0.3s ease;
+        transition: width 0.3s;
       }
-
       &:hover {
         color: $accent-color;
-
         &::after {
           width: 100%;
         }
@@ -162,79 +139,78 @@ body {
   }
 }
 
-@media (max-width: 768px) {
-  .site-header {
-    .header-container {
-      flex-direction: column;
-      align-items: flex-start;
-    }
-
-    .nav {
-      margin-top: 10px;
-      flex-wrap: wrap;
-
-      a {
-        margin: 10px 10px 0 0;
-      }
-    }
-  }
+// --- ৭. মেইন সেকশন (Spacing Fix) ---
+// এটি কার্ডগুলোকে হেডারের নিচ থেকে নামিয়ে আনবে
+main {
+  display: block;
+  padding-top: 40px;
+  padding-bottom: 40px;
 }
+
+// --- ৮. কার্ড স্টাইল ---
 .card {
   background: $white;
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   overflow: hidden;
-  transition: 0.3s;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
 
   img {
     width: 100%;
-    height: 150px;
+    height: 180px;
     object-fit: cover;
   }
 
   &:hover {
-    transform: translateY(-5px);
+    transform: translateY(-8px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
   }
 }
 
 .card-content {
-  padding: 15px;
+  padding: 20px;
 }
 
 .card-title {
-  font-size: 18px;
+  font-size: 1.1rem;
   font-weight: bold;
   margin-bottom: 10px;
+  color: #333;
 }
 
 .card-text {
-  font-size: 14px;
-  color: #555;
+  font-size: 0.9rem;
+  color: #666;
+  margin-bottom: 15px;
 }
 
 .btn {
   display: inline-block;
-  margin-top: 10px;
-  padding: 8px 12px;
+  padding: 10px 20px;
   background: #007bff;
   color: white;
   text-decoration: none;
   border-radius: 5px;
+  transition: background 0.3s;
+  &:hover {
+    background: darken(#007bff, 10%);
+  }
 }
 
-// Footer Styles
+// --- ৯. ফুটার স্টাইল ---
 .site-footer {
   background: $primary-bg;
   color: $text-color;
-  padding: 25px 0;
-  margin-top: 40px;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 40px 0;
+  margin-top: 60px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
 
   .footer-container {
     max-width: $container-width;
     margin: 0 auto;
     padding: 0 20px;
-
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -246,56 +222,33 @@ body {
     color: $muted-text;
   }
 
-  .footer-links {
-    display: flex;
-    align-items: center;
-
-    a {
-      color: $text-color;
-      text-decoration: none;
-      margin-left: 20px;
-      font-size: 14px;
-      position: relative;
-      transition: all 0.3s ease;
-
-      &::after {
-        content: "";
-        position: absolute;
-        left: 0;
-        bottom: -4px;
-        width: 0%;
-        height: 2px;
-        background: $accent-color;
-        transition: width 0.3s ease;
-      }
-
-      &:hover {
-        color: $accent-color;
-
-        &::after {
-          width: 100%;
-        }
-      }
+  .footer-links a {
+    color: $text-color;
+    text-decoration: none;
+    margin-left: 20px;
+    font-size: 14px;
+    transition: color 0.3s;
+    &:hover {
+      color: $accent-color;
     }
   }
 }
-// Responsive (Mobile)
+
+// --- ১০. রেসপন্সিভ মোবাইল ফিক্স ---
 @media (max-width: 768px) {
-  .site-footer {
+  .site-header .header-container {
+    flex-direction: column;
+    gap: 15px;
+  }
+  .site-header .nav {
+    margin-left: 0;
+    a {
+      margin: 0 10px;
+    }
+  }
+  .site-footer .footer-container {
+    flex-direction: column;
     text-align: center;
-
-    .footer-container {
-      flex-direction: column;
-      gap: 15px;
-    }
-
-    .footer-links {
-      flex-wrap: wrap;
-      justify-content: center;
-
-      a {
-        margin: 5px 10px;
-      }
-    }
+    gap: 20px;
   }
 }
