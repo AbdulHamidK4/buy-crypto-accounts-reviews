@@ -139,6 +139,15 @@ body {
   align-items: center;
 }
 
+.main-container {
+  max-width: $container-width;
+  margin: 0 auto;
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 // --- 7. Main Section (Spacing Fix) ---
 // This will bring the cards down from below the header.
 main {
